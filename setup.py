@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#pylint: skip-file
 import setuptools
 
 import NodeGraphQt.pkg_info as pkg_info
@@ -18,8 +17,8 @@ classifiers = [
     'Operating System :: OS Independent',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3.7',
-    'Documentation' :: 'https://jchanvfx.github.io/NodeGraphQt/api/html/index.html',
-    'Source' :: 'https://github.com/jchanvfx/NodeGraphQt/',
+    'Documentation :: https://jchanvfx.github.io/NodeGraphQt/api/html/index.html',
+    'Source :: https://github.com/jchanvfx/NodeGraphQt/',
 ]
 
 setuptools.setup(
