@@ -517,7 +517,7 @@ class NodeGraph(QtCore.QObject):
         """
         self._node_factory.register_node(node, alias)
 
-    def create_node(self, node_type, name=None, selected=True, color=None,
+    def create_node(self, node_type, *args, name=None, selected=True, color=None,
                     text_color=None, pos=None):
         """
         Create a new node in the node graph.
@@ -538,7 +538,7 @@ class NodeGraph(QtCore.QObject):
         """
         NodeCls = self._node_factory.create_node_instance(node_type)
         if NodeCls:
-            node = NodeCls()
+            node = NodeCls(*args)
 
             node._graph = self
             node.model._graph_model = self.model

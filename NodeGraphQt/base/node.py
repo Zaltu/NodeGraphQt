@@ -424,6 +424,7 @@ class BaseNode(NodeObject):
         widget = NodeComboBox(self.view, name, label, items)
         widget.value_changed.connect(lambda k, v: self.set_property(k, v))
         self.view.add_widget(widget)
+        return widget
 
     def add_text_input(self, name='', label='', text='', tab=None):
         """
@@ -441,6 +442,7 @@ class BaseNode(NodeObject):
         widget = NodeLineEdit(self.view, name, label, text)
         widget.value_changed.connect(lambda k, v: self.set_property(k, v))
         self.view.add_widget(widget)
+        return widget
 
     def add_checkbox(self, name='', label='', text='', state=False, tab=None):
         """
@@ -459,6 +461,7 @@ class BaseNode(NodeObject):
         widget = NodeCheckBox(self.view, name, label, text, state)
         widget.value_changed.connect(lambda k, v: self.set_property(k, v))
         self.view.add_widget(widget)
+        return widget
 
     def add_input(self, name='input', multi_input=False, display_name=True,
                   color=None):
