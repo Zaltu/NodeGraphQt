@@ -43,7 +43,7 @@ class NodeViewer(QtWidgets.QGraphicsView):
 
         scene_pos = (SCENE_AREA / 2) * -1
         self.setScene(NodeScene(self))
-        self.setSceneRect(scene_pos, scene_pos, SCENE_AREA, SCENE_AREA)
+        #self.setSceneRect(scene_pos, scene_pos, SCENE_AREA, SCENE_AREA)
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -247,7 +247,14 @@ class NodeViewer(QtWidgets.QGraphicsView):
         # reset recorded positions.
         self._node_positions = {}
 
+        # For some unknown reason, it seems like the default QGraphicsView somehow overides any selections
+        # made, specifically when releasing without moving the mouse. No idea why, and afaik there's no way
+        # it should, but hey. What do I know. This keep_selected is to reassert what nodes should be selected
+        # after releasing the mouse button.
+        keep_selected = self.selected_nodes()
         super(NodeViewer, self).mouseReleaseEvent(event)
+        for node in keep_selected:
+            node.selected = True
 
     def mouseMoveEvent(self, event):
         if self.ALT_state and self.SHIFT_state:
